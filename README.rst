@@ -1,5 +1,5 @@
 
-.. image:: https://readthedocs.org/projects/laptop/badge/?version=latest
+.. image:: https://readthedocs.org/projects/dev-laptop/badge/?version=latest
     :target: https://dev-laptop.readthedocs.io/en/latest/
     :alt: Documentation Status
 
