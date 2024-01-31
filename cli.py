@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from laptop.vendor.fire import Fire
+import fire
+
 from laptop.tools.pyenv import install_pyenv
 
 
@@ -9,4 +10,4 @@ class Command:
         install_pyenv()
 
 
-Fire(Command())
+fire.Fire(Command())
