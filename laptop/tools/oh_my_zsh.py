@@ -5,12 +5,12 @@ import urllib.request
 
 from ..paths import dir_home
 from ..utils import add_line
-from ..vendor.shell import path_rc
 
 from ..paths import dir_github
 
 
 dir_oh_my_zsh = dir_home.joinpath(".oh-my-zsh")
+path_rc = dir_home.joinpath(".zshrc")
 
 
 def is_oh_my_zsh_installed() -> bool:
@@ -23,6 +23,16 @@ def install_oh_my_zsh():
         content = response.read().decode("utf-8").strip()
     if is_oh_my_zsh_installed() is False:
         subprocess.run(["sh", "-c", content])
+    add_line(
+        path_rc,
+        [
+            "#------------------------------------------------------------",
+            "# Enable pyenv - Python environment manager",
+            'export PYENV_ROOT="$HOME/.pyenv"',
+            'export PATH="$PYENV_ROOT/bin:$PATH"',
+            'eval "$(pyenv init --path)"',
+        ],
+    )
 
 
 # ------------------------------------------------------------------------------
