@@ -54,5 +54,8 @@ Welcome to ``laptop`` Documentation
 
     #
     python3 cli.py install_pyenv
-
     python3 cli.py install_oh_my_zsh
+    python3 cli.py install_zsh_syntax_highlighting
+    python3 cli.py install_zsh_autocomplete
+    python3 cli.py install_zsh_autosuggestions
+    python3 cli.py install_zsh_powerlevel10k
