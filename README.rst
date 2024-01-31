@@ -1,22 +1,7 @@
 
 .. image:: https://readthedocs.org/projects/laptop/badge/?version=latest
-    :target: https://laptop.readthedocs.io/en/latest/
+    :target: https://dev-laptop.readthedocs.io/en/latest/
     :alt: Documentation Status
-
-.. image:: https://github.com/MacHu-GWU/laptop-project/workflows/CI/badge.svg
-    :target: https://github.com/MacHu-GWU/laptop-project/actions?query=workflow:CI
-
-.. image:: https://codecov.io/gh/MacHu-GWU/laptop-project/branch/main/graph/badge.svg
-    :target: https://codecov.io/gh/MacHu-GWU/laptop-project
-
-.. image:: https://img.shields.io/pypi/v/laptop.svg
-    :target: https://pypi.python.org/pypi/laptop
-
-.. image:: https://img.shields.io/pypi/l/laptop.svg
-    :target: https://pypi.python.org/pypi/laptop
-
-.. image:: https://img.shields.io/pypi/pyversions/laptop.svg
-    :target: https://pypi.python.org/pypi/laptop
 
 .. image:: https://img.shields.io/badge/Release_History!--None.svg?style=social
     :target: https://github.com/MacHu-GWU/laptop-project/blob/main/release-history.rst
@@ -27,13 +12,7 @@
 ------
 
 .. image:: https://img.shields.io/badge/Link-Document-blue.svg
-    :target: https://laptop.readthedocs.io/en/latest/
-
-.. image:: https://img.shields.io/badge/Link-API-blue.svg
-    :target: https://laptop.readthedocs.io/en/latest/py-modindex.html
-
-.. image:: https://img.shields.io/badge/Link-Install-blue.svg
-    :target: `install`_
+    :target: https://dev-laptop.readthedocs.io/en/latest/
 
 .. image:: https://img.shields.io/badge/Link-GitHub-blue.svg
     :target: https://github.com/MacHu-GWU/laptop-project
@@ -44,12 +23,12 @@
 .. image:: https://img.shields.io/badge/Link-Request_Feature-blue.svg
     :target: https://github.com/MacHu-GWU/laptop-project/issues
 
-.. image:: https://img.shields.io/badge/Link-Download-blue.svg
-    :target: https://pypi.org/pypi/laptop#files
-
 
 Welcome to ``laptop`` Documentation
 ==============================================================================
+.. image:: https://dev-laptop.readthedocs.io/en/latest/_static/laptop-logo.png
+    :target: https://dev-laptop.readthedocs.io/en/latest/
+
 This repo contains automation scripts to setup a new laptop with all the tools I need for my development work. It uses Python to run terminal commands and manipulate configuration files.
 
 This tool need some dependency to run the CLI. First you need to install dependency for laptop automation:
