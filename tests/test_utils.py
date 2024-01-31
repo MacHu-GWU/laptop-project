@@ -9,7 +9,6 @@ def test_add_line():
     p.write_text("hello\nworld\n")
     add_line(p, "hello")
     add_line(p, "alice")
-
     assert p.read_text().split("\n") == ["hello", "world", "", "alice", ""]
 
 

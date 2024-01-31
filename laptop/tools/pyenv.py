@@ -19,10 +19,13 @@ def install_pyenv():
     if is_pyenv_installed() is False:
         pipe = subprocess.Popen(["curl", "https://pyenv.run"], stdout=subprocess.PIPE)
         subprocess.run(["bash"], stdin=pipe.stdout)
-
-    add_line(path_rc, "#------------------------------------------------------------")
-    add_line(path_rc, "# Enable pyenv - Python environment manager")
-    add_line(path_rc, "#------------------------------------------------------------")
-    add_line(path_rc, 'export PYENV_ROOT="$HOME/.pyenv"')
-    add_line(path_rc, 'export PATH="$PYENV_ROOT/bin:$PATH"')
-    add_line(path_rc, 'eval "$(pyenv init --path)""""')
+    add_line(
+        path_rc,
+        [
+            "#------------------------------------------------------------",
+            "# Enable pyenv - Python environment manager",
+            'export PYENV_ROOT="$HOME/.pyenv"',
+            'export PATH="$PYENV_ROOT/bin:$PATH"',
+            'eval "$(pyenv init --path)""""',
+        ],
+    )
