@@ -1,6 +1,4 @@
-.. _zsh-root:
-
-zsh The ZShell
+Configure zsh
 ==============================================================================
 注: 本文的所有内容均有自动化脚本实现自动安装, 请前往 :ref:`configure-zsh-automatically` 查看.
 
