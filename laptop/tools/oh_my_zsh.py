@@ -102,3 +102,10 @@ def install_zsh_powerlevel10k():
         )
     else:
         print("  already installed")
+    add_line(
+        path_rc,
+        [
+            'export LANG="en_US.UTF-8"',
+            'export LC_ALL="en_US.UTF-8"',
+        ],
+    )
