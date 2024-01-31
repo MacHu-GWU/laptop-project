@@ -53,4 +53,6 @@ Welcome to ``laptop`` Documentation
 .. code-block:: bash
 
     #
-    python3 cli.py install-pyenv
+    python3 cli.py install_pyenv
+
+    python3 cli.py install_oh_my_zsh

@@ -29,3 +29,4 @@ def install_pyenv():
             'eval "$(pyenv init --path)"',
         ],
     )
+    print("Read https://github.com/pyenv/pyenv/wiki#suggested-build-environment to install dependencies for building Python in your OS")
