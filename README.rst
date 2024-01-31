@@ -50,6 +50,12 @@
 
 Welcome to ``laptop`` Documentation
 ==============================================================================
+Install dependency for laptop automation:
+
+.. code-block:: bash
+
+    pip install -r requirements.txt
+
 .. code-block:: bash
 
     #

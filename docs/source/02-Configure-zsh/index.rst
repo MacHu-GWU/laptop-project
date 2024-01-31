@@ -2,7 +2,7 @@
 
 zsh The ZShell
 ==============================================================================
-注: 本文的所有内容均有自动化脚本实现自动安装, 请前往 https://github.com/MacHu-GWU/laptop/tree/master/home, 参考 ``configure-zsh.py`` 脚本.
+注: 本文的所有内容均有自动化脚本实现自动安装, 请前往 :ref:`configure-zsh-automatically` 查看.
 
 
 Summary
@@ -172,6 +172,8 @@ Add newline to Oh My ZSH Theme
 
     **该方法也适用于自定义其他 zsh 插件功能**
 
+
+.. _configure-zsh-automatically:
 
 Configure zsh Automatically
 ------------------------------------------------------------------------------
