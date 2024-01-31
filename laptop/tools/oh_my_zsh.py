@@ -3,14 +3,23 @@
 import subprocess
 import urllib.request
 
-from ..paths import dir_home
-from ..utils import add_line
-
-from ..paths import dir_github
+from ..paths import dir_home, dir_github, dir_home_stuff
+from ..vendor.os_platform import IS_LINUX, IS_MACOS
 
 
 dir_oh_my_zsh = dir_home.joinpath(".oh-my-zsh")
-path_rc = dir_home.joinpath(".zshrc")
+path_zshrc = dir_home.joinpath(".zshrc")
+
+path_p10k_zsh = dir_home_stuff / ".p10k.zsh"
+
+if IS_MACOS:
+    path_p10k_zsh_source = dir_home_stuff / ".p10k.zsh-for-MacOS"
+elif IS_LINUX:
+    path_p10k_zsh_source = dir_home_stuff / ".p10k.zsh-for-Linux"
+else:
+    raise NotImplementedError
+
+path_zshrc_source = dir_home_stuff / ".zshrc"
 
 
 def is_oh_my_zsh_installed() -> bool:
@@ -23,16 +32,6 @@ def install_oh_my_zsh():
         content = response.read().decode("utf-8").strip()
     if is_oh_my_zsh_installed() is False:
         subprocess.run(["sh", "-c", content])
-    add_line(
-        path_rc,
-        [
-            "#------------------------------------------------------------",
-            "# Enable pyenv - Python environment manager",
-            'export PYENV_ROOT="$HOME/.pyenv"',
-            'export PATH="$PYENV_ROOT/bin:$PATH"',
-            'eval "$(pyenv init --path)"',
-        ],
-    )
 
 
 # ------------------------------------------------------------------------------
@@ -112,10 +111,18 @@ def install_zsh_powerlevel10k():
         )
     else:
         print("  already installed")
-    add_line(
-        path_rc,
-        [
-            'export LANG="en_US.UTF-8"',
-            'export LC_ALL="en_US.UTF-8"',
-        ],
+
+
+def install_all_zsh_plugins():
+    install_zsh_syntax_highlighting()
+    install_zsh_autocomplete()
+    install_zsh_autosuggestions()
+    install_zsh_powerlevel10k()
+
+
+def copy_zsh_config():
+    print("copy zsh config ...")
+    path_p10k_zsh.write_text(path_p10k_zsh_source.read_text())
+    path_zshrc.write_text(
+        path_zshrc_source.read_text().replace("{{ dir_github }}", str(dir_github))
     )

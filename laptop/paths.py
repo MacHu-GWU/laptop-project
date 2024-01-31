@@ -8,6 +8,8 @@ dir_python_lib = Path(__file__).absolute().parent
 PACKAGE_NAME = dir_python_lib.name
 
 dir_project_root = dir_python_lib.parent
+dir_home_stuff = dir_project_root.joinpath("home-stuff")
+
 dir_home = Path.home()
 
 if runtime.is_aws_cloud9:

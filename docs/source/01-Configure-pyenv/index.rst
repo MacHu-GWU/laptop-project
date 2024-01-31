@@ -1,4 +1,4 @@
-pyenv
+Configure pyenv
 ==============================================================================
 - `pyenv Github <https://github.com/pyenv/pyenv>`_
 - `Install pyenv <https://github.com/pyenv/pyenv?tab=readme-ov-file#installation>`_
