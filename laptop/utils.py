@@ -12,7 +12,6 @@ def add_line(p: Path, line: T.Union[str, T.List[str]]):
         line_list = [line]
     else:
         line_list = line
-    print(lines)
     for line in line_list:
         if line not in lines:
             lines.append(line)
