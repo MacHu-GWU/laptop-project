@@ -50,19 +50,16 @@
 
 Welcome to ``laptop`` Documentation
 ==============================================================================
-Install dependency for laptop automation:
+This repo contains automation scripts to setup a new laptop with all the tools I need for my development work. It uses Python to run terminal commands and manipulate configuration files.
+
+This tool need some dependency to run the CLI. First you need to install dependency for laptop automation:
 
 .. code-block:: bash
 
-    pip install -r requirements.txt
+    pip3 install -r requirements.txt
+
+Verify the CLI:
 
 .. code-block:: bash
 
-    #
-    python3 cli.py install_pyenv
-
-    python3 cli.py install_oh_my_zsh
-    python3 cli.py install_zsh_syntax_highlighting
-    python3 cli.py install_zsh_autocomplete
-    python3 cli.py install_zsh_autosuggestions
-    python3 cli.py install_zsh_powerlevel10k
+    python3 cli.py --help

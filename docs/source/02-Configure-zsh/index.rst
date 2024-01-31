@@ -191,7 +191,7 @@ install zsh plugins
 
     python3 cli.py install_all_zsh_plugins
 
-copy zsh config
+copy zsh config. 我把自己已经配好的 ``~/.zshrc`` 和 ``~/.p10k.zsh`` 配置文件放在了 `home_stuff <https://github.com/MacHu-GWU/laptop-project/tree/main/home_stuff>`_ 目录下. 运行下面的命令可以自动根据当前操作系统选择合适的配好的文件并复制到对应位置.
 
 .. code-block:: bash
 
