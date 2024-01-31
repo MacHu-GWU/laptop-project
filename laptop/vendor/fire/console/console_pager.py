@@ -22,7 +22,7 @@ from __future__ import unicode_literals
 import re
 import sys
 
-from fire.console import console_attr
+from . import console_attr
 
 
 class Pager(object):

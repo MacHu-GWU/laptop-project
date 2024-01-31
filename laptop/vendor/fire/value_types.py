@@ -20,7 +20,7 @@ from __future__ import print_function
 
 import inspect
 
-from fire import inspectutils
+from . import inspectutils
 import six
 
 

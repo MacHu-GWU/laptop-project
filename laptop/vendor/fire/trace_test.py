@@ -18,8 +18,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from fire import testutils
-from fire import trace
+from . import testutils
+from . import trace
 
 
 class FireTraceTest(testutils.BaseTestCase):

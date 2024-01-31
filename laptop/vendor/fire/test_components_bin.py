@@ -22,7 +22,7 @@ from __future__ import division
 from __future__ import print_function
 
 import fire
-from fire import test_components
+from . import test_components
 
 
 def main():

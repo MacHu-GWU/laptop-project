@@ -21,8 +21,8 @@ from __future__ import unicode_literals
 
 import os
 
-from fire.console import encoding as encoding_util
-from fire.console import platforms
+from . import encoding as encoding_util
+from . import platforms
 
 import six
 

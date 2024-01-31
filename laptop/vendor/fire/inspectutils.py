@@ -22,7 +22,7 @@ import inspect
 import sys
 import types
 
-from fire import docstrings
+from . import docstrings
 
 import six
 

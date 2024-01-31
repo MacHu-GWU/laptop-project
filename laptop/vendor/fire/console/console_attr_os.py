@@ -25,7 +25,7 @@ from __future__ import unicode_literals
 import os
 import sys
 
-from fire.console import encoding
+from . import encoding
 
 
 def GetTermSize():

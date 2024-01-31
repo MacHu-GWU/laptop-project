@@ -24,10 +24,10 @@ import signal
 import subprocess
 import sys
 
-from fire.console import console_attr
-from fire.console import console_pager
-from fire.console import encoding
-from fire.console import files
+from . import console_attr
+from . import console_pager
+from . import encoding
+from . import files
 
 
 def IsInteractive(output=False, error=False, heuristic=False):

@@ -37,13 +37,13 @@ import collections
 import itertools
 import sys
 
-from fire import completion
-from fire import custom_descriptions
-from fire import decorators
-from fire import docstrings
-from fire import formatting
-from fire import inspectutils
-from fire import value_types
+from . import completion
+from . import custom_descriptions
+from . import decorators
+from . import docstrings
+from . import formatting
+from . import inspectutils
+from . import value_types
 
 LINE_LENGTH = 80
 SECTION_INDENTATION = 4

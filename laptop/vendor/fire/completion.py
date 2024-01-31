@@ -22,7 +22,7 @@ import collections
 import copy
 import inspect
 
-from fire import inspectutils
+from . import inspectutils
 import six
 
 

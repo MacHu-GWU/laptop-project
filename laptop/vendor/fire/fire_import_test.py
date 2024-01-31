@@ -17,7 +17,7 @@
 import sys
 
 import fire
-from fire import testutils
+from . import testutils
 import mock
 
 

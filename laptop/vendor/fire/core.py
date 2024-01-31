@@ -62,16 +62,16 @@ import shlex
 import sys
 import types
 
-from fire import completion
-from fire import decorators
-from fire import formatting
-from fire import helptext
-from fire import inspectutils
-from fire import interact
-from fire import parser
-from fire import trace
-from fire import value_types
-from fire.console import console_io
+from . import completion
+from . import decorators
+from . import formatting
+from . import helptext
+from . import inspectutils
+from . import interact
+from . import parser
+from . import trace
+from . import value_types
+from .console import console_io
 import six
 
 if six.PY34:
@@ -777,7 +777,7 @@ def _ParseArgs(fn_args, fn_defaults, num_required_args, kwargs,
     kwargs: Dict with named command line arguments and their values.
     remaining_args: The remaining command line arguments, which may still be
         used as positional arguments.
-    metadata: Metadata about the function, typically from Fire decorators.
+    metadata: Metadata about the function, typically from . decorators.
   Returns:
     parsed_args: A list of values to be used as positional arguments for calling
         the target function.
@@ -970,7 +970,7 @@ def _ParseValue(value, index, arg, metadata):
     value: The string value to be parsed, typically a command line argument.
     index: The index of the value in the function's argspec.
     arg: The name of the argument the value is being parsed for.
-    metadata: Metadata about the function, typically from Fire decorators.
+    metadata: Metadata about the function, typically from . decorators.
   Returns:
     value, parsed into the appropriate type for calling a function.
   """

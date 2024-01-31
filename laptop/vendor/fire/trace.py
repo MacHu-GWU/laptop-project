@@ -31,7 +31,7 @@ from __future__ import print_function
 
 import pipes
 
-from fire import inspectutils
+from . import inspectutils
 
 INITIAL_COMPONENT = 'Initial component'
 INSTANTIATED_CLASS = 'Instantiated class'

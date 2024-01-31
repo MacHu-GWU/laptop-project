@@ -18,8 +18,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from fire import parser
-from fire import testutils
+from . import parser
+from . import testutils
 from hypothesis import example
 from hypothesis import given
 from hypothesis import settings

@@ -18,7 +18,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from fire.core import Fire
+from .core import Fire
 
 __all__ = ['Fire']
 __version__ = '0.5.0'

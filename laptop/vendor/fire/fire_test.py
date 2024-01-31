@@ -22,8 +22,8 @@ import os
 import sys
 
 import fire
-from fire import test_components as tc
-from fire import testutils
+from . import test_components as tc
+from . import testutils
 
 import mock
 import six

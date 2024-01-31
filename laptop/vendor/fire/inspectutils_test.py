@@ -21,9 +21,9 @@ from __future__ import print_function
 import os
 import unittest
 
-from fire import inspectutils
-from fire import test_components as tc
-from fire import testutils
+from . import inspectutils
+from . import test_components as tc
+from . import testutils
 
 import six
 

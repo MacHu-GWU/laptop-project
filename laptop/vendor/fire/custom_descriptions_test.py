@@ -18,8 +18,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-from fire import custom_descriptions
-from fire import testutils
+from . import custom_descriptions
+from . import testutils
 
 LINE_LENGTH = 80
 

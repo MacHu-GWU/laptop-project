@@ -22,11 +22,11 @@ import os
 import sys
 import textwrap
 
-from fire import formatting
-from fire import helptext
-from fire import test_components as tc
-from fire import testutils
-from fire import trace
+from . import formatting
+from . import helptext
+from . import test_components as tc
+from . import testutils
+from . import trace
 import six
 
 

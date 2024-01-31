@@ -95,10 +95,10 @@ import os
 import sys
 import unicodedata
 
-# from fire.console import properties
-from fire.console import console_attr_os
-from fire.console import encoding as encoding_util
-from fire.console import text
+# from .console import properties
+from . import console_attr_os
+from . import encoding as encoding_util
+from . import text
 
 import six
 

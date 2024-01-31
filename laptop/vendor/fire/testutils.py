@@ -24,8 +24,8 @@ import re
 import sys
 import unittest
 
-from fire import core
-from fire import trace
+from . import core
+from . import trace
 
 import mock
 import six

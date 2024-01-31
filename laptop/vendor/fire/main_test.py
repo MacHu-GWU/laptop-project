@@ -17,8 +17,8 @@
 import os
 import tempfile
 
-from fire import __main__
-from fire import testutils
+from . import __main__
+from . import testutils
 
 
 class MainModuleTest(testutils.BaseTestCase):

@@ -20,7 +20,7 @@ from __future__ import print_function
 
 import sys
 
-from fire import testutils
+from . import testutils
 
 import six
 
