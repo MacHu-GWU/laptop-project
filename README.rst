@@ -50,22 +50,7 @@
 
 Welcome to ``laptop`` Documentation
 ==============================================================================
-Documentation for ``laptop``.
+.. code-block:: bash
 
-
-.. _install:
-
-Install
-------------------------------------------------------------------------------
-
-``laptop`` is released on PyPI, so all you need is to:
-
-.. code-block:: console
-
-    $ pip install laptop
-
-To upgrade to latest version:
-
-.. code-block:: console
-
-    $ pip install --upgrade laptop
+    #
+    python3 cli.py install-pyenv
