@@ -5,10 +5,13 @@ import typing as T
 from .vendor.pathlib_mate import Path
 
 
-def add_line(p: Path, line: str):
+def add_line(p: Path, line: T.Union[str, T.List[str]]):
     lines = p.read_text().split("\n")
-    if line in lines:
-        return
+    if isinstance(line, str):
+        line_list = [line]
     else:
-        lines.append(line)
-        p.write_text("\n".join(lines) + "\n")
+        line_list = line
+    for line in line_list:
+        if line not in lines:
+            lines.append(line)
+    p.write_text("\n".join(lines) + "\n")
