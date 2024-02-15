@@ -116,6 +116,7 @@ My Favorite Theme - powerlevel10k
 
 - Installation: 因为这个主题要和 oh-my-zsh 配合使用, 所以参考 ``Installation -> Oh My Zsh`` 一节的文档, 将其安装在 ``~/.oh-my-zsh/custom/theme`` 目录下. 然后再在 ``.zshrc`` 中设置 ``ZSH_THEME="powerlevel10k/powerlevel10k"``
 - Wizard: 第一次使用时会出现一个 configuration wizard, 问你一些问题然后自动生成 ``p10k`` 的配置文件, 该配置文件在 ``~/.p10k.zsh`` 处. 如果你对当前配置不满意, 你可以用 ``p10k configure`` 命令重新配置一遍.
+- Terminal Emoji Issue: 你刚安装和配置好 p10k 主题后, 发现 Terminal 中仍然有乱码, 这是因为 Mac 的默认字体无法正确显示一些 Emoji. 你需要到 https://github.com/romkatv/powerlevel10k/blob/master/font.md 官网下载安装推荐的 Meslo Nerd 字体, 然后再你的 Terminal App 中配置好.
 - PyCharm Terminal Emoji Issue: Pycharm `有一个 Bug 会导致 PyCharm 自带的 Terminal emulator 无法显示 UTF-8 Emoji 图标 <https://youtrack.jetbrains.com/issue/IDEA-118832>`_. 解决方法是在 ``~/.zshrc`` 配置文件中添加 ``export LANG="en_US.UTF-8"`` 和 ``export LC_ALL="en_US.UTF-8"`` 两行, 使得 Shell 知道你的字符编码是 UTF-8. 然后在 PyCharm 上方的菜单里的 Help 菜单里选择 Edit Custom VM Option, 然后添加一行 ``-Dfile.encoding=UTF-8``, 这能告诉 Java VM 的字符编码为 UTF-8. 然后重启 PyCharm 后再进入 zsh 就能正常显示 Emojii 图标了.
 
 Ref:
