@@ -10,6 +10,5 @@ PyCharm 是 JetBrain 公司出品的一款 Python 专用 IDLE (大规模集成�
 
 PyCharm 是我的主力开发工具. 本文记录了如何快速的为一台新电脑配置 PyCharm.
 
-.. contents::
-    :depth: 1
-    :local:
+.. autotoctree::
+    :maxdepth: 1
