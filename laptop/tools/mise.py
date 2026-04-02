@@ -73,8 +73,6 @@ def install_mise() -> bool:
     """
     Install mise-en-place and configure shell integration.
 
-    See: https://mise.jdx.dev/
-
     This function:
     1. Checks if mise is already installed (idempotent)
     2. Downloads and installs mise using the official install script

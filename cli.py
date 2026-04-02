@@ -17,6 +17,7 @@ import argparse
 import sys
 
 from laptop.tools.mise import install_mise
+from laptop.tools.starship import install_starship
 
 
 # ==============================================================================
@@ -146,21 +147,20 @@ def setup_install_subcommands(subparsers):
     )
     mise_parser.set_defaults(func=cmd_install_mise)
 
-    # Example: How to add more tools
-    # --------------------------------
-    # # install starship
-    # starship_parser = install_subparsers.add_parser(
-    #     "starship",
-    #     help="Install starship.rs (cross-platform shell prompt)",
-    #     description="Install starship and configure shell integration.",
-    # )
-    # cmd_install_starship = make_install_command(
-    #     install_func=install_starship,  # from laptop.tools.starship import install_starship
-    #     success_message="starship installation completed successfully!",
-    #     already_installed_message="starship is already installed and configured",
-    #     error_message_prefix="Error installing starship",
-    # )
-    # starship_parser.set_defaults(func=cmd_install_starship)
+    # install starship
+    starship_parser = install_subparsers.add_parser(
+        "starship",
+        help="Install starship.rs (cross-platform shell prompt)",
+        description="Install starship.rs and configure with no-nerd-font preset. "
+        "Starship is a minimal, fast, and customizable prompt for any shell.",
+    )
+    cmd_install_starship = make_install_command(
+        install_func=install_starship,
+        success_message="starship installation completed successfully!",
+        already_installed_message="starship is already installed and configured",
+        error_message_prefix="Error installing starship",
+    )
+    starship_parser.set_defaults(func=cmd_install_starship)
 
 
 def main():
