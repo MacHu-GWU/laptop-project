@@ -18,6 +18,9 @@ import sys
 
 from laptop.tools.mise import install_mise
 from laptop.tools.starship import install_starship
+from laptop.tools.zsh_autosuggestions import install_zsh_autosuggestions
+from laptop.tools.zsh_syntax_highlighting import install_zsh_syntax_highlighting
+from laptop.tools.zsh_completions import install_zsh_completions
 
 
 # ==============================================================================
@@ -161,6 +164,51 @@ def setup_install_subcommands(subparsers):
         error_message_prefix="Error installing starship",
     )
     starship_parser.set_defaults(func=cmd_install_starship)
+
+    # install zsh-autosuggestions
+    zsh_autosuggestions_parser = install_subparsers.add_parser(
+        "zsh-autosuggestions",
+        help="Install zsh-autosuggestions (fish-like suggestions)",
+        description="Install zsh-autosuggestions plugin. Suggests commands as you type "
+        "based on history and completions.",
+    )
+    cmd_install_zsh_autosuggestions = make_install_command(
+        install_func=install_zsh_autosuggestions,
+        success_message="zsh-autosuggestions installation completed successfully!",
+        already_installed_message="zsh-autosuggestions is already installed and configured",
+        error_message_prefix="Error installing zsh-autosuggestions",
+    )
+    zsh_autosuggestions_parser.set_defaults(func=cmd_install_zsh_autosuggestions)
+
+    # install zsh-syntax-highlighting
+    zsh_syntax_highlighting_parser = install_subparsers.add_parser(
+        "zsh-syntax-highlighting",
+        help="Install zsh-syntax-highlighting (command syntax highlighting)",
+        description="Install zsh-syntax-highlighting plugin. Provides fish-like syntax "
+        "highlighting for zsh commands as you type.",
+    )
+    cmd_install_zsh_syntax_highlighting = make_install_command(
+        install_func=install_zsh_syntax_highlighting,
+        success_message="zsh-syntax-highlighting installation completed successfully!",
+        already_installed_message="zsh-syntax-highlighting is already installed and configured",
+        error_message_prefix="Error installing zsh-syntax-highlighting",
+    )
+    zsh_syntax_highlighting_parser.set_defaults(func=cmd_install_zsh_syntax_highlighting)
+
+    # install zsh-completions
+    zsh_completions_parser = install_subparsers.add_parser(
+        "zsh-completions",
+        help="Install zsh-completions (additional completion definitions)",
+        description="Install zsh-completions plugin. Provides additional completion "
+        "definitions for many common commands.",
+    )
+    cmd_install_zsh_completions = make_install_command(
+        install_func=install_zsh_completions,
+        success_message="zsh-completions installation completed successfully!",
+        already_installed_message="zsh-completions is already installed and configured",
+        error_message_prefix="Error installing zsh-completions",
+    )
+    zsh_completions_parser.set_defaults(func=cmd_install_zsh_completions)
 
 
 def main():
