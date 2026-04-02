@@ -1,2 +1,0 @@
-# Core dependencies goes here
-fire>=0.5.0
