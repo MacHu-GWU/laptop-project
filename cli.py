@@ -23,6 +23,67 @@ from laptop.tools.zsh_syntax_highlighting import install_zsh_syntax_highlighting
 from laptop.tools.zsh_completions import install_zsh_completions
 
 
+def install_all() -> bool:
+    """
+    Install all available development tools.
+
+    This function installs all tools in a sensible order:
+    1. mise (runtime manager)
+    2. starship (shell prompt)
+    3. zsh plugins (autosuggestions, syntax highlighting, completions)
+
+    All installation functions are idempotent - already installed tools
+    will be skipped automatically.
+
+    Returns:
+        True (always returns True to indicate the command completed,
+        even if some tools were already installed)
+    """
+    print("Installing all development tools...\n")
+    print("=" * 60)
+
+    tools = [
+        ("mise", install_mise),
+        ("starship", install_starship),
+        ("zsh-autosuggestions", install_zsh_autosuggestions),
+        ("zsh-syntax-highlighting", install_zsh_syntax_highlighting),
+        ("zsh-completions", install_zsh_completions),
+    ]
+
+    installed_count = 0
+    skipped_count = 0
+    failed = []
+
+    for tool_name, install_func in tools:
+        print(f"\n[{tool_name}]")
+        print("-" * 60)
+        try:
+            result = install_func()
+            if result:
+                installed_count += 1
+                print(f"✓ {tool_name} installed successfully")
+            else:
+                skipped_count += 1
+                print(f"→ {tool_name} already installed (skipped)")
+        except Exception as e:
+            failed.append((tool_name, str(e)))
+            print(f"✗ {tool_name} installation failed: {e}")
+
+    # Summary
+    print("\n" + "=" * 60)
+    print("Installation Summary:")
+    print(f"  - Newly installed: {installed_count}")
+    print(f"  - Already installed (skipped): {skipped_count}")
+    if failed:
+        print(f"  - Failed: {len(failed)}")
+        for tool_name, error in failed:
+            print(f"    • {tool_name}: {error}")
+    print("=" * 60)
+
+    # Always return True to indicate the command completed
+    return True
+
+
 # ==============================================================================
 # Old Commands (Deprecated - using fire library)
 # ==============================================================================
@@ -182,7 +243,17 @@ def setup_install_subcommands(subparsers):
         required=True,
     )
 
-    # Register all installation tools
+    # Register the 'all' command first
+    register_install_tool(
+        install_subparsers,
+        command_name="all",
+        install_func=install_all,
+        short_help="Install all development tools",
+        description="Install all available development tools in a sensible order. "
+        "Already installed tools will be skipped automatically (idempotent).",
+    )
+
+    # Register individual installation tools
     register_install_tool(
         install_subparsers,
         command_name="mise",
