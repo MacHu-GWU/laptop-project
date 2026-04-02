@@ -119,6 +119,54 @@ def make_install_command(
     return command_handler
 
 
+def register_install_tool(
+    subparsers,
+    command_name: str,
+    install_func,
+    short_help: str,
+    description: str,
+):
+    """
+    Register an installation tool to the CLI.
+
+    This helper function standardizes the registration of installation tools,
+    reducing boilerplate code and ensuring consistency across all tools.
+
+    Args:
+        subparsers: The argparse subparsers object to add the command to
+        command_name: The command name (e.g., "mise", "starship")
+        install_func: The installation function to call
+        short_help: Short help text shown in command list
+        description: Detailed description shown in --help
+
+    Example:
+        >>> register_install_tool(
+        ...     install_subparsers,
+        ...     command_name="mise",
+        ...     install_func=install_mise,
+        ...     short_help="Install mise-en-place (polyglot runtime manager)",
+        ...     description="Install mise-en-place and configure shell integration.",
+        ... )
+    """
+    # Create parser for this tool
+    parser = subparsers.add_parser(
+        command_name,
+        help=short_help,
+        description=description,
+    )
+
+    # Create command handler with standardized messages
+    cmd_handler = make_install_command(
+        install_func=install_func,
+        success_message=f"{command_name} installation completed successfully!",
+        already_installed_message=f"{command_name} is already installed and configured",
+        error_message_prefix=f"Error installing {command_name}",
+    )
+
+    # Register the command handler
+    parser.set_defaults(func=cmd_handler)
+
+
 def setup_install_subcommands(subparsers):
     """Set up the 'install' subcommand group."""
     install_parser = subparsers.add_parser(
@@ -134,81 +182,51 @@ def setup_install_subcommands(subparsers):
         required=True,
     )
 
-    # install mise
-    mise_parser = install_subparsers.add_parser(
-        "mise",
-        help="Install mise-en-place (polyglot runtime manager)",
+    # Register all installation tools
+    register_install_tool(
+        install_subparsers,
+        command_name="mise",
+        install_func=install_mise,
+        short_help="Install mise-en-place (polyglot runtime manager)",
         description="Install mise-en-place and configure shell integration. "
         "mise is a modern replacement for asdf, pyenv, nvm, rbenv, etc.",
     )
-    # Create command handler using factory function
-    cmd_install_mise = make_install_command(
-        install_func=install_mise,
-        success_message="mise installation completed successfully!",
-        already_installed_message="mise is already installed and configured",
-        error_message_prefix="Error installing mise",
-    )
-    mise_parser.set_defaults(func=cmd_install_mise)
 
-    # install starship
-    starship_parser = install_subparsers.add_parser(
-        "starship",
-        help="Install starship.rs (cross-platform shell prompt)",
+    register_install_tool(
+        install_subparsers,
+        command_name="starship",
+        install_func=install_starship,
+        short_help="Install starship.rs (cross-platform shell prompt)",
         description="Install starship.rs and configure with no-nerd-font preset. "
         "Starship is a minimal, fast, and customizable prompt for any shell.",
     )
-    cmd_install_starship = make_install_command(
-        install_func=install_starship,
-        success_message="starship installation completed successfully!",
-        already_installed_message="starship is already installed and configured",
-        error_message_prefix="Error installing starship",
-    )
-    starship_parser.set_defaults(func=cmd_install_starship)
 
-    # install zsh-autosuggestions
-    zsh_autosuggestions_parser = install_subparsers.add_parser(
-        "zsh-autosuggestions",
-        help="Install zsh-autosuggestions (fish-like suggestions)",
+    register_install_tool(
+        install_subparsers,
+        command_name="zsh-autosuggestions",
+        install_func=install_zsh_autosuggestions,
+        short_help="Install zsh-autosuggestions (fish-like suggestions)",
         description="Install zsh-autosuggestions plugin. Suggests commands as you type "
         "based on history and completions.",
     )
-    cmd_install_zsh_autosuggestions = make_install_command(
-        install_func=install_zsh_autosuggestions,
-        success_message="zsh-autosuggestions installation completed successfully!",
-        already_installed_message="zsh-autosuggestions is already installed and configured",
-        error_message_prefix="Error installing zsh-autosuggestions",
-    )
-    zsh_autosuggestions_parser.set_defaults(func=cmd_install_zsh_autosuggestions)
 
-    # install zsh-syntax-highlighting
-    zsh_syntax_highlighting_parser = install_subparsers.add_parser(
-        "zsh-syntax-highlighting",
-        help="Install zsh-syntax-highlighting (command syntax highlighting)",
+    register_install_tool(
+        install_subparsers,
+        command_name="zsh-syntax-highlighting",
+        install_func=install_zsh_syntax_highlighting,
+        short_help="Install zsh-syntax-highlighting (command syntax highlighting)",
         description="Install zsh-syntax-highlighting plugin. Provides fish-like syntax "
         "highlighting for zsh commands as you type.",
     )
-    cmd_install_zsh_syntax_highlighting = make_install_command(
-        install_func=install_zsh_syntax_highlighting,
-        success_message="zsh-syntax-highlighting installation completed successfully!",
-        already_installed_message="zsh-syntax-highlighting is already installed and configured",
-        error_message_prefix="Error installing zsh-syntax-highlighting",
-    )
-    zsh_syntax_highlighting_parser.set_defaults(func=cmd_install_zsh_syntax_highlighting)
 
-    # install zsh-completions
-    zsh_completions_parser = install_subparsers.add_parser(
-        "zsh-completions",
-        help="Install zsh-completions (additional completion definitions)",
+    register_install_tool(
+        install_subparsers,
+        command_name="zsh-completions",
+        install_func=install_zsh_completions,
+        short_help="Install zsh-completions (additional completion definitions)",
         description="Install zsh-completions plugin. Provides additional completion "
         "definitions for many common commands.",
     )
-    cmd_install_zsh_completions = make_install_command(
-        install_func=install_zsh_completions,
-        success_message="zsh-completions installation completed successfully!",
-        already_installed_message="zsh-completions is already installed and configured",
-        error_message_prefix="Error installing zsh-completions",
-    )
-    zsh_completions_parser.set_defaults(func=cmd_install_zsh_completions)
 
 
 def main():
