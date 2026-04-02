@@ -21,6 +21,7 @@ from laptop.tools.starship import install_starship
 from laptop.tools.zsh_autosuggestions import install_zsh_autosuggestions
 from laptop.tools.zsh_syntax_highlighting import install_zsh_syntax_highlighting
 from laptop.tools.zsh_completions import install_zsh_completions
+from laptop.tools.zsh_autocomplete import install_zsh_autocomplete
 
 
 def install_all() -> bool:
@@ -30,7 +31,7 @@ def install_all() -> bool:
     This function installs all tools in a sensible order:
     1. mise (runtime manager)
     2. starship (shell prompt)
-    3. zsh plugins (autosuggestions, syntax highlighting, completions)
+    3. zsh plugins (autosuggestions, syntax highlighting, completions, autocomplete)
 
     All installation functions are idempotent - already installed tools
     will be skipped automatically.
@@ -48,6 +49,7 @@ def install_all() -> bool:
         ("zsh-autosuggestions", install_zsh_autosuggestions),
         ("zsh-syntax-highlighting", install_zsh_syntax_highlighting),
         ("zsh-completions", install_zsh_completions),
+        # ("zsh-autocomplete", install_zsh_autocomplete), # Don't install zsh-autocomplete
     ]
 
     installed_count = 0
@@ -297,6 +299,15 @@ def setup_install_subcommands(subparsers):
         short_help="Install zsh-completions (additional completion definitions)",
         description="Install zsh-completions plugin. Provides additional completion "
         "definitions for many common commands.",
+    )
+
+    register_install_tool(
+        install_subparsers,
+        command_name="zsh-autocomplete",
+        install_func=install_zsh_autocomplete,
+        short_help="Install zsh-autocomplete (real-time type-ahead autocompletion)",
+        description="Install zsh-autocomplete plugin. Provides real-time type-ahead "
+        "autocompletion for zsh, similar to fish shell's behavior.",
     )
 
 
