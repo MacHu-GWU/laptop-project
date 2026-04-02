@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import typing as T
+from __future__ import annotations
+
+import shutil
+import subprocess
 
 from pathlib import Path
 
@@ -59,3 +62,112 @@ def add_line_to_config(
         new_content = content + "\n" + line + "\n"
 
     return new_content
+
+
+def is_command_installed(command: str) -> bool:
+    """
+    Check if a command-line tool is installed and available in PATH.
+
+    This function uses shutil.which to check if a command can be found
+    in the system's PATH environment variable.
+
+    Args:
+        command: The name of the command to check (e.g., 'git', 'python', 'mise')
+
+    Returns:
+        True if the command is installed and found in PATH, False otherwise
+
+    Examples:
+        >>> is_command_installed('python')
+        True
+        >>> is_command_installed('some-nonexistent-command-xyz')
+        False
+    """
+    return shutil.which(command) is not None
+
+
+def git_clone(
+    url: str,
+    path: Path,
+    depth: int | None = 1,
+    branch: str | None = None,
+    tag: str | None = None,
+    force_reclone: bool = False,
+) -> bool:
+    """
+    Clone a git repository to the specified path with idempotent behavior.
+
+    Args:
+        url: Git repository URL (e.g., 'https://github.com/user/repo.git')
+        path: Destination path where the repository will be cloned
+        depth: Clone depth for shallow clone (default: 1). Set to None for full clone.
+        branch: Branch name to clone (mutually exclusive with tag)
+        tag: Tag name to clone (mutually exclusive with branch)
+        force_reclone: If True, delete and re-clone if destination exists with .git dir.
+                       If False, skip cloning if destination already exists (idempotent).
+
+    Returns:
+        True if cloning was performed, False if skipped (when force_reclone=False
+        and destination already exists)
+
+    Raises:
+        ValueError: If both branch and tag are specified, or if destination exists
+                    without a .git directory
+        subprocess.CalledProcessError: If git clone command fails
+
+    Examples:
+        >>> # Clone a repository with default shallow clone (depth=1)
+        >>> git_clone("https://github.com/user/repo.git", Path("/tmp/repo"))
+
+        >>> # Clone a specific branch
+        >>> git_clone("https://github.com/user/repo.git", Path("/tmp/repo"), branch="main")
+
+        >>> # Clone a specific tag with full history
+        >>> git_clone("https://github.com/user/repo.git", Path("/tmp/repo"), depth=None, tag="v1.0.0")
+
+        >>> # Force re-clone if destination exists
+        >>> git_clone("https://github.com/user/repo.git", Path("/tmp/repo"), force_reclone=True)
+    """
+    # Validate that branch and tag are mutually exclusive
+    if branch is not None and tag is not None:
+        raise ValueError("Cannot specify both branch and tag")
+
+    # Check if destination exists
+    if path.exists():
+        git_dir = path / ".git"
+
+        if git_dir.exists():
+            # Destination is a git repository
+            if force_reclone:
+                # Delete and re-clone
+                shutil.rmtree(path)
+            else:
+                # Skip cloning (idempotent behavior)
+                return False
+        else:
+            # Destination exists but is not a git repository
+            raise ValueError(
+                f"Destination path {path} exists but does not contain a .git directory. "
+                f"Cannot clone repository here."
+            )
+
+    # Build git clone command
+    cmd = ["git", "clone"]
+
+    # Add depth argument for shallow clone
+    if depth is not None:
+        cmd.extend(["--depth", str(depth)])
+
+    # Add branch or tag
+    if branch is not None:
+        cmd.extend(["--branch", branch])
+    elif tag is not None:
+        cmd.extend(["--branch", tag])
+
+    # Add URL and destination path
+    cmd.extend([url, str(path)])
+
+    # Execute git clone
+    subprocess.run(cmd, check=True, capture_output=True, text=True)
+
+    return True
