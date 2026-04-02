@@ -3,4 +3,9 @@
 if __name__ == "__main__":
     from laptop.tests import run_cov_test
 
-    run_cov_test(__file__, "laptop", is_folder=True, preview=False)
+    run_cov_test(
+        __file__,
+        "laptop",
+        is_folder=True,
+        preview=False,
+    )

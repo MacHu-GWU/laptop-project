@@ -5,6 +5,7 @@
 claude = "latest"
 python = "3.12"
 uv = "latest"
+ruff = "latest"
 
 # === Tasks
 [tasks.venv-create]
@@ -18,3 +19,16 @@ run = "rm -r .venv"
 [tasks.inst]
 description = "💾 Install Python dependencies (dev, test, doc, etc.) via uv"
 run = "uv sync --all-extras"
+
+[tasks.cov]
+description = "🧪 Run code coverage test"
+run = """
+.venv/bin/pytest \
+  -s \
+  --tb=native \
+  --rootdir=. \
+  --cov=laptop \
+  --cov-report term-missing \
+  --cov-report html:htmlcov \
+  tests
+"""
