@@ -42,6 +42,10 @@ def _install_starship() -> None:
     """
     print("Installing starship.rs...")
 
+    # Install to ~/.local/bin (avoids permission issues with /usr/local/bin)
+    bin_dir = Path.home() / ".local" / "bin"
+    bin_dir.mkdir(parents=True, exist_ok=True)
+
     # Download the installation script
     curl_process = subprocess.Popen(
         ["curl", "-sS", "https://starship.rs/install.sh"],
@@ -51,7 +55,7 @@ def _install_starship() -> None:
 
     # Pipe the downloaded script to sh with -s flag for non-interactive install
     install_result = subprocess.run(
-        ["sh", "-s", "--", "-y"],  # -y flag for auto-confirm
+        ["sh", "-s", "--", "-y", "-b", str(bin_dir)],
         stdin=curl_process.stdout,
         capture_output=True,
         text=True,
