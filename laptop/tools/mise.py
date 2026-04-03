@@ -130,11 +130,11 @@ def _add_mise_activation_to_rc() -> None:
 
     # Determine the activation command based on shell type
     if shell.is_zsh:
-        activation_line = 'eval "$(mise activate zsh)"'
+        activation_line = 'eval "$(~/.local/bin/mise activate zsh)"'
     elif shell.is_bash:
-        activation_line = 'eval "$(mise activate bash)"'
+        activation_line = 'eval "$(~/.local/bin/mise activate bash)"'
     elif shell.is_sh:
-        activation_line = 'eval "$(mise activate sh)"'
+        activation_line = 'eval "$(~/.local/bin/mise activate sh)"'
     else:
         raise NotImplementedError(f"Unsupported shell: {shell.shell_name}")
 
