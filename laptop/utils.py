@@ -16,12 +16,12 @@ def add_line_to_config(
     """
     Add a line to a configuration file (e.g., .zshrc) in an idempotent way.
 
-    This function reads the file content, checks if the line already exists,
-    and only modifies the content if the line is not present. It ensures the
-    file ends with a newline character.
+    This function reads the file content (or treats non-existent files as empty),
+    checks if the line already exists, and only modifies the content if the line
+    is not present. It ensures the file ends with a newline character.
 
     Args:
-        path: Path to the configuration file
+        path: Path to the configuration file (file may or may not exist)
         line: The line to add (without trailing newline)
         add_blank_line_before: If True, add a blank line before the new line (default: True)
 
@@ -34,9 +34,15 @@ def add_line_to_config(
 
         >>> content = add_line_to_config(Path(".zshrc"), "alias ll='ls -la'", add_blank_line_before=False)
         >>> # Adds the line without a blank line before it
+
+        >>> content = add_line_to_config(Path("new_config.txt"), "first line")
+        >>> # Works even if new_config.txt doesn't exist (treats as empty file)
     """
-    # Read the existing content
-    content = path.read_text()
+    # Read the existing content, treat non-existent file as empty string
+    if path.exists():
+        content = path.read_text()
+    else:
+        content = ""
 
     # Split content into lines for exact line matching
     lines = content.splitlines()

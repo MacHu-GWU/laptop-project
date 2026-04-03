@@ -14,6 +14,26 @@ def test_add_line_to_config():
     tmp_dir.mkdir(parents=True, exist_ok=True)
     test_file = tmp_dir / "test_config_temp.txt"
 
+    # Test 0: Add line to non-existent file (should treat as empty string)
+    if test_file.exists():
+        test_file.unlink()
+    result = add_line_to_config(
+        test_file,
+        "export PATH=$PATH:/new/path",
+        add_blank_line_before=True,
+    )
+    assert result == "\n\nexport PATH=$PATH:/new/path\n"
+
+    # Test 0b: Add line to non-existent file without blank line before
+    if test_file.exists():
+        test_file.unlink()
+    result = add_line_to_config(
+        test_file,
+        "export EDITOR=vim",
+        add_blank_line_before=False,
+    )
+    assert result == "\nexport EDITOR=vim\n"
+
     # Test 1: Add line to empty file with blank line before (default)
     test_file.write_text("")
     result = add_line_to_config(
