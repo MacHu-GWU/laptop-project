@@ -20,6 +20,16 @@ test = [
 ]
 
 doc = [
+    "Sphinx>=7.4.7,<8.0.0",
+    "sphinx-copybutton>=0.5.2,<1.0.0", # add copy button to code block
+    "sphinx-design>=0.6.1,<1.0.0", # add additional design pattern to sphinx
+    "sphinx-jinja>=2.0.2,<3.0.0", # enable jinja syntax in reStructuredText
+    "furo==2024.8.6", # the furo sphinx theme
+    "pygments>=2.18.0,<3.0.0", # syntax highlight
+    "ipython>=8.18.1,<8.19.0", # interactive Python
+    "nbsphinx>=0.8.12,<1.0.0", # add jupyter notebook in sphinx doc
+    "rstobj==1.2.1", # generate reStructuredText from Python code
+    "docfly==3.0.0", # automaticall generate .. toctree directives and API reference doc
 ]
 
 [tool.setuptools.packages.find]
